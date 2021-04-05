@@ -1,0 +1,37 @@
+<h1>Crowd Pomodoros (We work together)</h1>
+
+<%= live_component @socket, CrowdPomodoroWeb.TaskLive.FormComponent,
+  id: @task.id || :new,
+  action: @live_action,
+  task: @task
+%>
+
+<table>
+  <tbody id="tasks">
+    <%= for task <- @tasks do %>
+      <tr id="task-<%= task.id %>">
+        <td><%= task.description %></td>
+        <td><%= humanize(task.status) %></td>
+        <td><%= task.time_as_string %></td>
+
+        <td>
+          <%# <span><%= live_patch "Edit", to: Routes.task_index_path(@socket, :edit, task) %1></span> %>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: task.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Completed Tasks</h2>
+<table>
+  <tbody id="completed_tasks">
+    <%= for task <- @completed_tasks do %>
+      <tr id="task-<%= task.id %>">
+        <td><%= task.description %></td>
+        <td><%= humanize(task.status) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

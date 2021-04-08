@@ -18,13 +18,6 @@ config :crowd_pomodoro, CrowdPomodoroWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   version: Mix.Project.config[:version]
 
-config :crowd_pomodoro, CrowdPomodoro.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  url: "${DATABASE_URL}",
-  database: "",
-  #ssl: true,
-  pool_size: 2
-
 # Do not print debug messages in production
 config :logger, level: :info
 

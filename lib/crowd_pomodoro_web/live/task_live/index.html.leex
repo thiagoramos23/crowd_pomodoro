@@ -1,37 +1,56 @@
-<h1>Crowd Pomodoros (We work together)</h1>
-
-<%= live_component @socket, CrowdPomodoroWeb.TaskLive.FormComponent,
-  id: @task.id || :new,
-  action: @live_action,
-  task: @task
-%>
-
-<table>
-  <tbody id="tasks">
-    <%= for task <- @tasks do %>
-      <tr id="task-<%= task.id %>">
-        <td><%= task.description %></td>
-        <td><%= humanize(task.status) %></td>
-        <td><%= task.time_as_string %></td>
-
-        <td>
-          <%# <span><%= live_patch "Edit", to: Routes.task_index_path(@socket, :edit, task) %1></span> %>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: task.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h2>Completed Tasks</h2>
-<table>
-  <tbody id="completed_tasks">
+<h1 class="py-10 text-5xl font-normal text-black-800 text-center tracking-wide">Crowd Pomodoros (We work together)</h1>
+</br>
+<div class="mx-auto md:px-64">
+  <%= live_component @socket, CrowdPomodoroWeb.TaskLive.FormComponent,
+      id: @task.id || :new,
+      action: @live_action,
+      task: @task
+  %>
+  
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <%= if @tasks != [] do %>
+  <h2 class="text-5xl font-normal tracking-wide text-gray-700">On Going Tasks</h2>
+  <div class="mt-5 divide-y-4 divide-black-900 divide-solid mb-10">
+    <div></div>
+    <div></div>
+  </div>
+  <% end %>
+  
+  <%= for task <- @tasks do %>
+    <div class="container mx-auto bg-gray-200 shadow-md rounded-md px-8 py-5 border border-gray-300 sm:px-6 mt-3">
+      <div class="-mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
+        <div class="mt-4">
+          <h3 class="text-3xl font-normal text-gray-900 tracking-normal pr-10">
+            <%= task.description %>
+          </h3>
+        </div>
+        <div class="ml-4 mt-4">
+          <div class="flex">
+            <h3 class="text-5xl leading-6 font-bold tracking-wide pr-8 py-4"><%= task.time_as_string %></h3>
+            <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: task.id, data: [confirm: "Are you sure?"], class: "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-2lg font-medium rounded-md text-white hover:text-white bg-red-400 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="bg-gray-100 shadow-sm rounded-lg border border-gray-200 px-4 py-4 mt-20">
+    <h2 class="text-5xl font-normal tracking-wide text-gray-700">Completed Tasks</h2>
+    <div class="mt-10 divide-y-4 divide-black-900 divide-solid">
+      <div></div>
+      <div></div>
+    </div>
+    
     <%= for task <- @completed_tasks do %>
-      <tr id="task-<%= task.id %>">
-        <td><%= task.description %></td>
-        <td><%= humanize(task.status) %></td>
-      </tr>
+      <div class="container mx-auto  px-8 py-5 border-b border-gray-200 sm:px-6 mt-5">
+        <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
+          <div class="ml-4 mt-4">
+            <h3 class="text-2xl font-normal text-gray-700">
+              <%= task.description %>
+            </h3>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
+  </div>
+</div>

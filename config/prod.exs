@@ -22,7 +22,7 @@ config :crowd_pomodoro, CrowdPomodoro.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: "${DATABASE_URL}",
   database: "",
-  ssl: true,
+  #ssl: true,
   pool_size: 2
 
 # Do not print debug messages in production

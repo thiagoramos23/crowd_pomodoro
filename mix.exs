@@ -48,7 +48,8 @@ defmodule CrowdPomodoro.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:timex, "~> 3.7.3"},
-      {:distillery, "~> 2.1"}
+      {:distillery, "~> 2.1", override: true},
+      {:mix_docker, "~>0.5.0"}
     ]
   end
 

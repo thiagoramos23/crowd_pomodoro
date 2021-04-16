@@ -12,14 +12,23 @@ use Mix.Config
 config :crowd_pomodoro, CrowdPomodoroWeb.Endpoint,
   server: true,
   load_from_system_env: true,
-  http: [port: {:system, "PORT"}],
+  http: [port: "${PORT}"],
   secret_key_base: "${SECRET_KEY_BASE}",
-  url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
+  url: [host: "${HOST}", port: "${PORT}"],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  version: Mix.Project.config[:version]
+  version: Mix.Project.config[:version],
+  root: "."
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :crowd_pomodoro, CrowdPomodoro.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  hostname: "${DB_HOSTNAME}",
+  username: "${DB_USERNAME}",
+  password: "${DB_PASSWORD}",
+  database: "${DB_NAME}",
+  pool_size: 20
 
 # ## SSL Support
 #

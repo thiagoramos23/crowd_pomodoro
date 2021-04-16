@@ -25,14 +25,15 @@ module.exports = (env, options) => {
         new OptimizeCSSAssetsPlugin({}),
         new PurgecssPlugin({
           paths: globAll.sync([
-            '../lib/<APP_NAME>_web/templates/**/*.html.eex',
-            '../lib/<APP_NAME>_web/views/**/*.ex',
+            '../lib/crowd_pomodoro_web/templates/**/*.html.eex',
+            '../lib/crowd_pomodoro_web/live/**/*.html.leex',
+            '../lib/crowd_pomodoro_web/views/**/*.ex',
             '../assets/js/**/*.js',
           ]),
           extractors: [
             {
               extractor: TailwindExtractor,
-              extensions: ['html', 'js', 'eex', 'ex'],
+              extensions: ['html', 'js', 'eex', 'ex', 'html.leex'],
             },
           ],
         }),

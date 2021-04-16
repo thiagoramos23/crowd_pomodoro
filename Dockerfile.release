@@ -1,0 +1,11 @@
+FROM elixir:1.11.4
+ENV DEBIAN_FRONTEND=noninteractive
+
+EXPOSE 8000
+ENV PORT=8000 MIX_ENV=prod REPLACE_OS_VARS=true SHELL=/bin/bash
+
+WORKDIR /app
+COPY ./crowd_pomodoro.tar.gz ./
+RUN tar xfz crowd_pomodoro.tar.gz
+
+ENTRYPOINT ["bin/crowd_pomodoro"]

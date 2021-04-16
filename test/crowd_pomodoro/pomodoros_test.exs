@@ -24,11 +24,11 @@ defmodule CrowdPomodoro.PomodorosTest do
       in_progress_task = task_fixture(%{status: "in_progress"})
       completed_task = task_fixture(%{status: "completed", completed_at: utc_now})
       completed_task_older_than_10_minutes = task_fixture(%{status: "completed", completed_at: utc_now |> DateTime.add(-610, :second)})
-      assert Pomodoros.list_tasks() == [in_progress_task, completed_task]
+      assert Pomodoros.list_tasks() == [in_progress_task]
     end
 
     test "list_completed_tasks/0 returns all completed tasks" do
-      utc_now = DateTime.utc_now
+      utc_now = DateTime.utc_now()
       task_fixture(%{status: "in_progress"})
       completed_task = task_fixture(%{status: "completed", completed_at: utc_now})
       old_completed_task = task_fixture(%{status: "completed", completed_at: utc_now |> DateTime.add(-6000, :second)})

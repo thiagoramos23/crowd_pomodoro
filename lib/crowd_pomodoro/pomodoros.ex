@@ -22,7 +22,7 @@ defmodule CrowdPomodoro.Pomodoros do
   end
 
   def list_completed_tasks do
-    Repo.all(Task.all_completed_tasks_ordered_by_completed_at())
+    Repo.all(Task.all_completed_tasks_for_the_day())
   end
 
   @doc """

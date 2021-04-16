@@ -27,9 +27,11 @@ defmodule CrowdPomodoro.Pomodoros.Task do
     from t in Task, where: t.status == ^status
   end
 
-  def all_completed_tasks_ordered_by_completed_at do
+  def all_completed_tasks_for_the_day do
     all_completed_query = Task.all_tasks_with_status("completed")
-    from t in all_completed_query, order_by: [asc: t.completed_at]
+    from t in all_completed_query, 
+      where: fragment("?::date", t.completed_at) == ^Date.utc_today(),
+      order_by: [asc: t.completed_at]
   end
 
   defp add_started_and_end_at(%Ecto.Changeset{valid?: true} = changeset) do

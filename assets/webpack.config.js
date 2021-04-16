@@ -25,9 +25,9 @@ module.exports = (env, options) => {
         new OptimizeCSSAssetsPlugin({}),
         new PurgecssPlugin({
           paths: globAll.sync([
-            '../lib/<APP_NAME>_web/templates/**/*.html.eex',
-            '../lib/<APP_NAME>_web/live/**/*.html.leex',
-            '../lib/<APP_NAME>_web/views/**/*.ex',
+            '../lib/crowd_pomodoro/templates/**/*.html.eex',
+            '../lib/crowd_pomodoro/live/**/*.html.leex',
+            '../lib/crowd_pomodoro/views/**/*.ex',
             '../assets/js/**/*.js',
           ]),
           extractors: [

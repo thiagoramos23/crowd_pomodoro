@@ -22,21 +22,21 @@ module.exports = (env, options) => {
     optimization: {
       minimizer: [
         new TerserPlugin({ cache: true, parallel: true, sourceMap: devMode }),
-        new OptimizeCSSAssetsPlugin({}),
-        new PurgecssPlugin({
-          paths: globAll.sync([
-            '../lib/crowd_pomodoro/templates/**/*.html.eex',
-            '../lib/crowd_pomodoro/live/**/*.html.leex',
-            '../lib/crowd_pomodoro/views/**/*.ex',
-            '../assets/js/**/*.js',
-          ]),
-          extractors: [
-            {
-              extractor: TailwindExtractor,
-              extensions: ['html', 'js', 'eex', 'ex', 'html.leex'],
-            },
-          ],
-        }),
+        // new OptimizeCSSAssetsPlugin({}),
+        // new PurgecssPlugin({
+        //   paths: globAll.sync([
+        //     '../lib/crowd_pomodoro/templates/**/*.html.eex',
+        //     '../lib/crowd_pomodoro/live/**/*.html.leex',
+        //     '../lib/crowd_pomodoro/views/**/*.ex',
+        //     '../assets/js/**/*.js',
+        //   ]),
+          // extractors: [
+          //   {
+          //     extractor: TailwindExtractor,
+          //     extensions: ['html', 'js', 'eex', 'ex', 'html.leex'],
+          //   },
+          // ],
+        // }),
       ]
     },
     entry: {

@@ -22,13 +22,20 @@ config :crowd_pomodoro, CrowdPomodoroWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+database_url =
+  System.get_env("DATABASE_URL") ||
+    raise """
+    environment variable DATABASE_URL is missing.
+    For example: ecto://USER:PASS@HOST/DATABASE
+    """
+
 config :crowd_pomodoro, CrowdPomodoro.Repo,
   adapter: Ecto.Adapters.Postgres,
-  hostname: "${DB_HOSTNAME}",
-  username: "${DB_USERNAME}",
-  password: "${DB_PASSWORD}",
-  database: "${DB_NAME}",
-  pool_size: 20
+  database: "",
+  ssl: true,
+  url: database_url,
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+
 
 # ## SSL Support
 #

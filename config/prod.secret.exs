@@ -18,13 +18,13 @@ use Mix.Config
 #  url: database_url,
 #  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
-config :crowd_pomodoro, CrowdPomodoro.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  hostname: "${DB_HOSTNAME}",
-  username: "${DB_USERNAME}",
-  password: "${DB_PASSWORD}",
-  database: "${DB_NAME}",
-  pool_size: 20
+# config :crowd_pomodoro, CrowdPomodoro.Repo,
+#   adapter: Ecto.Adapters.Postgres,
+#   hostname: "${DB_HOSTNAME}",
+#   username: "${DB_USERNAME}",
+#   password: "${DB_PASSWORD}",
+#   database: "${DB_NAME}",
+#   pool_size: 20
 
 secret_key_base =
   "${SECRET_KEY_BASE}" ||
@@ -33,12 +33,12 @@ secret_key_base =
     You can generate one by calling: mix phx.gen.secret
     """
 
-config :crowd_pomodoro, CrowdPomodoroWeb.Endpoint,
-  http: [
-    port: String.to_integer(System.get_env("PORT") || "4000"),
-    transport_options: [socket_opts: [:inet6]]
-  ],
-  secret_key_base: secret_key_base
+# config :crowd_pomodoro, CrowdPomodoroWeb.Endpoint,
+#   http: [
+#     port: String.to_integer(System.get_env("PORT") || "4000"),
+#     transport_options: [socket_opts: [:inet6]]
+#   ],
+#   secret_key_base: secret_key_base
 
 # ## Using releases (Elixir v1.9+)
 #

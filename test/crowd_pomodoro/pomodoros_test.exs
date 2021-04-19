@@ -31,7 +31,8 @@ defmodule CrowdPomodoro.PomodorosTest do
       utc_now = DateTime.utc_now()
       task_fixture(%{status: "in_progress"})
       completed_task = task_fixture(%{status: "completed", completed_at: utc_now})
-      old_completed_task = task_fixture(%{status: "completed", completed_at: utc_now |> DateTime.add(-6000, :second)})
+      old_completed_task = task_fixture(%{status: "completed", completed_at: utc_now |> DateTime.add(-85000, :second)})
+      more_than_a_day_old_completed_task = task_fixture(%{status: "completed", completed_at: utc_now |> DateTime.add(-87000, :second)})
       assert Pomodoros.list_completed_tasks() == [old_completed_task, completed_task]
     end
 

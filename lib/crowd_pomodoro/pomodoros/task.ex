@@ -30,8 +30,12 @@ defmodule CrowdPomodoro.Pomodoros.Task do
   def all_completed_tasks_for_the_day do
     all_completed_query = Task.all_tasks_with_status("completed")
     from t in all_completed_query, 
-      where: fragment("?::date", t.completed_at) == ^Date.utc_today(),
+      where: t.completed_at > ^twenty_four_hours_ago(),
       order_by: [asc: t.completed_at]
+  end
+
+  defp twenty_four_hours_ago() do
+    DateTime.utc_now |> DateTime.add(-86400, :second)
   end
 
   defp add_started_and_end_at(%Ecto.Changeset{valid?: true} = changeset) do
